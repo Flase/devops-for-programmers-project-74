@@ -34,4 +34,5 @@ jobs:
         tags: dsradozhitskiy/devops-for-programmers-project-74:latest
 
     - name: Run tests with Docker Compose
-      run: docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+      run: make ci
+#      run: docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app

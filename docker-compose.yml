@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+      #    image: cr.selcloud.ru/hexlet/devops-for-programmers-project-74
+    image: dsradozhitskiy/devops-for-programmers-project-74
+    command: make test
+    depends_on:
+      - db
+
   db:
     image: postgres
     restart: always
@@ -14,12 +24,3 @@ services:
       timeout: 5s
       retries: 5
 
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile.production
-      #    image: cr.selcloud.ru/hexlet/devops-for-programmers-project-74
-    image: dsradozhitskiy/devops-for-programmers-project-74
-    command: make test
-    depends_on:
-      - db

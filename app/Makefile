@@ -72,3 +72,9 @@ compose-app:
 
 ci:
 	docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+
+compose-dev:
+	docker compose -f docker-compose.yml -f docker-compose.override.yml up app
+
+compose-test:
+	docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
