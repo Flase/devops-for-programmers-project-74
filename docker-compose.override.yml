@@ -7,24 +7,20 @@ services:
       dockerfile: Dockerfile
     volumes:
       - app/:/app
-    ports:
-      - "8080:8080"
+#    ports:
+#      - "8080:8080"
     command: make dev
 
   caddy:
     image: caddy
     restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
     ports:
       - "80:80"
       - "443:443"
       - "443:443/udp"
     volumes:
-      - $PWD/services/caddy/Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
+      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile
     depends_on:
       - app
-
-volumes:
-  caddy_data:
-  caddy_config:
