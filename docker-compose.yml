@@ -9,7 +9,8 @@ services:
     image: dsradozhitskiy/devops-for-programmers-project-74
     command: make test
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       DATABASE_NAME: postgres
       DATABASE_USERNAME: postgres
